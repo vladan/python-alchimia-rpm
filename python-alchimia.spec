@@ -4,16 +4,16 @@
 
 Name:       python-%{srcname}
 Version:    0.4
-Release:    1%{?dist}
-Summary:    (SQLAlchemy - ORM) + Twisted = win
+Release:    2%{?dist}
+Summary:    A Python library that integrates Twisted with SqlAlchemy
 
 Group:      Development/Libraries
-License:    The MIT License (MIT)
+License:    MIT
 URL:        https://github.com/alex/%{srcname}
 Source0:    https://pypi.python.org/packages/source/a/%{srcname}/%{srcname}-%{version}.tar.gz
 
 
-Buildarch: noarch
+BuildArch: noarch
 
 
 BuildRequires: python-setuptools
@@ -24,8 +24,6 @@ BuildRequires: python-sqlalchemy
 
 Requires: python-sqlalchemy
 Requires: python-twisted
-
-
 
 
 %description
@@ -42,25 +40,28 @@ it does not allow you to use the ORM.
 
 
 %build
+rm -rf %{srcname}.egg-info
 %{__python} setup.py build
 
 
 %install
-%{__rm} -rf %{buildroot}
 %{__python} setup.py install --skip-build --root %{buildroot}
 
 
-%clean
-%{__rm} -rf %{buildroot}
-
-
 %files
-%defattr(-, root, root, 0755)
-%doc README.rst
+%doc README.rst AUTHORS CONTRIBUTING.rst LICENSE ChangeLog
 %{python_sitelib}/%{srcname}/
 %{python_sitelib}/%{srcname}-%{version}-py*.egg-info/
 
 
 %changelog
-* Thu Oct 10 2013 Vladan Popovic - 0.4
+* Wed Oct 16 2013 Vladan Popovic <vpopovic@redhat.com> - 0.4-2%{?dist}
+- Remove prebuilt package egg
+- Remove EPEL5 parts
+- Shorten the licence name (only MIT)
+- Change the summary
+- Add files to %doc
+- Fix typo Buildarch -> BuildArch
+
+* Thu Oct 10 2013 Vladan Popovic <vpopovic@redhat.com> - 0.4-1
 - Initial package.
