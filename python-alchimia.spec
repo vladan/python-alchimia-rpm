@@ -58,7 +58,7 @@ rm -f {test-,}requirements.txt
 
 
 %changelog
-* Wed Oct 16 2013 0.4-3
+* Wed Oct 16 2013 Vladan Popovic <vpopovic@redhat.com> - 0.4-3
 - Add build requirements python-pbr and python-devel
 - Move the deletion of unneeded files in the prep section
 - Remove requirements.txt and test-requirements.txt
